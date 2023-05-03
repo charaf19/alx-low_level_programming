@@ -1,46 +1,30 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - inserts a new node in a linked list,
- * at a given position
- * @head: pointer to the first node in the list
- * @idx: index where the new node is added
- * @n: data to insert in the new node
+ * main - check the code
  *
- * Return: pointer to the new node, or NULL
+ * Return: Always 0.
  */
-listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
+int main(void)
 {
-	unsigned int i;
-	listint_t *new;
-	listint_t *temp = *head;
+    listint_t *head;
 
-	new = malloc(sizeof(listint_t));
-	if (!new || !head)
-		return (NULL);
-
-	new->n = n;
-	new->next = NULL;
-
-	if (idx == 0)
-	{
-		new->next = *head;
-		*head = new;
-		return (new);
-	}
-
-	for (i = 0; temp && i < idx; i++)
-	{
-		if (i == idx - 1)
-		{
-			new->next = temp->next;
-			temp->next = new;
-			return (new);
-		}
-		else
-			temp = temp->next;
-	}
-
-	return (NULL);
+    head = NULL;
+    add_nodeint_end(&head, 0);
+    add_nodeint_end(&head, 1);
+    add_nodeint_end(&head, 2);
+    add_nodeint_end(&head, 3);
+    add_nodeint_end(&head, 4);
+    add_nodeint_end(&head, 98);
+    add_nodeint_end(&head, 402);
+    add_nodeint_end(&head, 1024);
+    print_listint(head);
+    printf("-----------------\n");
+    insert_nodeint_at_index(&head, 5, 4096);
+    print_listint(head);
+    free_listint2(&head);
+    return (0);
 }
-
